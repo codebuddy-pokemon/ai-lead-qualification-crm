@@ -99,13 +99,13 @@ Email and Sales Notification
 ## Proposed Technology Stack
 
 - Frontend: Next.js
-- Backend: FastAPI or Next.js API routes
+- Backend: FastAPI
 - Database: PostgreSQL
-- Workflow automation: n8n
-- AI integration: OpenAI-compatible LLM API
-- CRM integration: HubSpot or a simulated CRM adapter
-- Deployment: Docker
-- Infrastructure extension: Kubernetes/OpenShift
+- Automation: n8n
+- CRM: HubSpot test account or local CRM adapter
+- AI: OpenAI-compatible API
+- Deployment: Docker Compose initially
+- Infrastructure: Kubernetes/OpenShift after MVP
 
 The final technology choices will be documented as the architecture is implemented.
 
