@@ -107,7 +107,7 @@ Email and Sales Notification
 - Deployment: Docker Compose initially
 - Infrastructure: Kubernetes/OpenShift after MVP
 
-The final technology choices will be documented as the architecture is implemented.
+Detailed implementation decisions, integration patterns, and architectural trade-offs will be documented as the system is developed.
 
 ## Safety and Reliability
 
