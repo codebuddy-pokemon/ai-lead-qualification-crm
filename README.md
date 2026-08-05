@@ -171,21 +171,82 @@ The workflow is intended to help businesses:
 
 ```text
 ai-lead-qualification-crm/
-├── README.md
-├── docs/
-│   ├── business-problem.md
-│   ├── workflow.md
-│   ├── architecture.md
-│   └── security.md
-├── frontend/
 ├── backend/
-├── automation/
-├── infrastructure/
-└── screenshots/
+│   ├── app/
+│   │   ├── models/
+│   │   ├── services/
+│   │   ├── main.py
+│   │   └── routes.py
+│   ├── tests/
+│   ├── requirements.txt
+│   └── requirements-dev.txt
+├── frontend/
+│   ├── app/
+│   ├── components/
+│   └── package.json
+├── docs/
+│   ├── architecture.md
+│   ├── data-model.md
+│   ├── scoring-model.md
+│   ├── security.md
+│   └── workflow.md
+├── .env.example
+└── README.md
 ```
 
 ## Project Status
 
-**Current stage:** Discovery and solution design
+**Current stage:** Validated lead-intake vertical slice
+
+The current implementation includes:
+
+- A responsive Next.js project-intake form
+- Required-field and browser-level validation
+- A versioned FastAPI lead-submission endpoint
+- Backend validation for email, URL, consent, field lengths, and contact preferences
+- A health endpoint and automated API tests
+- A human-review confirmation state after submission
+
+Lead submissions are held in a temporary in-memory store during this first slice. PostgreSQL persistence, deterministic scoring, AI analysis, CRM synchronization, notifications, and outbound communication remain intentionally outside this increment.
+
+## Local Development
+
+### 1. Start the API
+
+```bash
+cd backend
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements-dev.txt
+uvicorn app.main:app --reload
+```
+
+The API will be available at `http://localhost:8000`. Interactive API documentation is available at `http://localhost:8000/docs`.
+
+### 2. Start the frontend
+
+In a second terminal:
+
+```bash
+cd frontend
+cp .env.local.example .env.local
+npm install
+npm run dev
+```
+
+Open `http://localhost:3000` and submit a sample lead.
+
+### 3. Run verification
+
+```bash
+cd backend
+.venv/bin/python -m pytest -q
+```
+
+```bash
+cd frontend
+npm run lint
+npm run build
+```
 
 This is an original portfolio project designed to demonstrate AI workflow automation, CRM integration, human-in-the-loop controls, and production deployment practices.
